@@ -16,9 +16,12 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".LocaisActivity">
-
+        <activity
+            android:name=".LocaisActivity"
+            android:label="Locais">
+            />
         </activity>
+        <activity android:name=".InfoLocalActivity"></activity>
     </application>
 
 </manifest>
