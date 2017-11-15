@@ -8,8 +8,13 @@
     tools:context="com.taes.iair.iair.MainActivity">
 
     <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="250dp"
+        android:orientation="horizontal"></LinearLayout>
+
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="498dp"
         android:orientation="horizontal">
 
         <ImageView
@@ -31,4 +36,5 @@
             android:layout_weight="1"
             app:srcCompat="@mipmap/ic_temperature_round" />
     </LinearLayout>
+
 </LinearLayout>
