@@ -8,9 +8,17 @@
     tools:context="com.taes.iair.iair.MainActivity">
 
     <LinearLayout
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="250dp"
-        android:orientation="horizontal"></LinearLayout>
+        android:orientation="horizontal">
+
+        <ImageView
+            android:id="@+id/imageView4"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            app:srcCompat="@mipmap/ic_logo_background" />
+    </LinearLayout>
 
     <LinearLayout
         android:layout_width="match_parent"
