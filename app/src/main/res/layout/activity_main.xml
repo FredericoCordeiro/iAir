@@ -14,7 +14,7 @@
 
         <ImageView
             android:id="@+id/imageView4"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_weight="1"
             app:srcCompat="@mipmap/ic_logo_background" />
@@ -94,7 +94,18 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:text="Mostrar Outros Locais" />
+            android:layout_weight="0"
+            android:background="@color/ic_atm_press_background"
+            android:elevation="0dp"
+            android:freezesText="false"
+            android:includeFontPadding="false"
+            android:keyboardNavigationCluster="false"
+            android:onClick="onClickLocais"
+            android:padding="10dp"
+            android:text="Mostrar Outros Locais"
+            android:textColor="@android:color/background_light"
+            android:textSize="14sp"
+            android:textStyle="bold" />
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -106,7 +117,13 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:text="Visualizar Informação Sensores" />
+            android:background="@color/ic_humidity_background"
+            android:freezesText="false"
+            android:padding="10dp"
+            android:text="Visualizar Informação Sensores"
+            android:textColor="@android:color/background_light"
+            android:textSize="14sp"
+            android:textStyle="bold" />
     </LinearLayout>
 
 </LinearLayout>

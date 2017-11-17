@@ -4,11 +4,21 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
     tools:context="com.taes.iair.iair.LocaisActivity">
 
-    <ListView
-        android:id="@+id/listLocais"
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:listitem="@layout/item_listview_favorito" />
+        android:layout_weight="0"
+        android:orientation="horizontal">
+
+        <ListView
+            android:id="@+id/listLocais"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="0"
+            tools:listitem="@layout/item_listview_favorito" />
+    </LinearLayout>
+
 </LinearLayout>
