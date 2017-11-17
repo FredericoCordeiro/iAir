@@ -15,4 +15,27 @@ public class Ar {
         this.pressAtmosferica = pressAtmosferica;
     }
 
+    public int getHumidade() {
+        return humidade;
+    }
+
+    public void setHumidade(int humidade) {
+        this.humidade = humidade;
+    }
+
+    public int getTemperatura() {
+        return temperatura;
+    }
+
+    public void setTemperatura(int temperatura) {
+        this.temperatura = temperatura;
+    }
+
+    public int getPressAtmosferica() {
+        return pressAtmosferica;
+    }
+
+    public void setPressAtmosferica(int pressAtmosferica) {
+        this.pressAtmosferica = pressAtmosferica;
+    }
 }

@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">iAir</string>
+    <string name="FAVOURITE_LOCATION">fav_location</string>
 </resources>
