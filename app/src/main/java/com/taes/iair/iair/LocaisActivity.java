@@ -22,6 +22,8 @@ public class LocaisActivity extends AppCompatActivity {
                 "favorito", Context.MODE_PRIVATE);
         String favorito = prefs.getString("favorito",null);
         Toast.makeText(this, favorito, Toast.LENGTH_SHORT).show();
+
+
     }
 
 
