@@ -22,7 +22,8 @@
             android:label="Locais">
             />
         </activity>
-        <activity android:name=".InfoLocalActivity"></activity>
+        <activity android:name=".InfoLocalActivity" />
+        <activity android:name=".SensoresActivity"></activity>
     </application>
 
 </manifest>

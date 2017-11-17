@@ -119,6 +119,7 @@
             android:layout_gravity="center"
             android:background="@color/ic_humidity_background"
             android:freezesText="false"
+            android:onClick="onClickSensores"
             android:padding="10dp"
             android:text="Visualizar Informação Sensores"
             android:textColor="@android:color/background_light"

@@ -88,4 +88,11 @@ public class MainActivity extends AppCompatActivity {
 
         startActivity(it);
     }
-}
+
+    public void onClickSensores(View view) {
+        Intent it = new Intent(this, SensoresActivity.class);
+
+        startActivity(it);
+    }
+    }
+
