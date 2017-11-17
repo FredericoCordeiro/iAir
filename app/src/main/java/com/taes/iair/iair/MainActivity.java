@@ -13,6 +13,7 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 
+import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -41,9 +42,8 @@ public class MainActivity extends AppCompatActivity {
                         //Toast.makeText(MainActivity.this, response, Toast.LENGTH_LONG).show();
                         try {
                             JSONObject mainObject = new JSONObject(response);
-                            JSONObject feeds = mainObject.getJSONObject("feeds");
-                            String  cidade = feeds.getString("field1");
-                            Toast.makeText(MainActivity.this, cidade.toString(), Toast.LENGTH_SHORT).show();
+                            JSONArray feeds = mainObject.getJSONArray("feeds");
+                            Toast.makeText(MainActivity.this, feeds.toString(), Toast.LENGTH_SHORT).show();
                         } catch (JSONException e) {
                             e.printStackTrace();
                         }
@@ -65,4 +65,11 @@ public class MainActivity extends AppCompatActivity {
 
         startActivity(it);
     }
-}
+
+    public void onClickSensores(View view) {
+        Intent it = new Intent(this, SensoresActivity.class);
+
+        startActivity(it);
+    }
+    }
+
