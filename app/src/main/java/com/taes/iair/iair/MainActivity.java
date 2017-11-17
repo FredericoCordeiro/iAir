@@ -29,12 +29,11 @@ public class MainActivity extends AppCompatActivity {
 
          atualizarQualidadeAr();
 
-        /*SharedPreferences sharedPref = getApplication().getSharedPreferences(
-                getString(R.string.FAVOURITE_LOCATION), Context.MODE_PRIVATE);*/
+
 
         //SharedPreferences prefs = this.getSharedPreferences(
-                //"favorito", Context.MODE_PRIVATE);
-       // prefs.edit().putString("favorito", "Lisboa").apply();
+       //"favorito", Context.MODE_PRIVATE);
+        //prefs.edit().putString("favorito", "Leiria").apply();
 
     }
 

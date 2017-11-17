@@ -103,7 +103,7 @@
             android:onClick="onClickLocais"
             android:padding="10dp"
             android:text="Mostrar Outros Locais"
-            android:textColor="@android:color/background_light"
+            android:textColor="@android:color/background_dark"
             android:textSize="14sp"
             android:textStyle="bold" />
 
@@ -122,7 +122,7 @@
             android:onClick="onClickSensores"
             android:padding="10dp"
             android:text="Visualizar Informação Sensores"
-            android:textColor="@android:color/background_light"
+            android:textColor="@android:color/background_dark"
             android:textSize="14sp"
             android:textStyle="bold" />
     </LinearLayout>

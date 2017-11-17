@@ -85,8 +85,11 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="right"
+            android:layout_margin="5dp"
             android:layout_weight="0"
-            android:text="Historico" />
+            android:background="@color/ic_atm_press_background"
+            android:text="Historico"
+            android:textColor="@android:color/background_dark" />
     </LinearLayout>
 
     <TextView
@@ -126,7 +129,10 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="right"
+            android:layout_margin="5dp"
             android:layout_weight="0"
-            android:text="Historico" />
+            android:background="@color/ic_atmospheric_pressure"
+            android:text="Historico"
+            android:textColor="@android:color/background_dark" />
     </LinearLayout>
 </LinearLayout>
