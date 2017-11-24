@@ -22,6 +22,8 @@ import org.json.JSONObject;
 
 public class MainActivity extends AppCompatActivity {
 
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -30,9 +32,11 @@ public class MainActivity extends AppCompatActivity {
          atualizarQualidadeAr();
 
 
-
         SharedPreferences prefs = this.getSharedPreferences("favorito", Context.MODE_PRIVATE);
-        prefs.edit().putString("favorito", "Leiria").apply();
+        String favorito = prefs.getString("favorito",null);
+        Toast.makeText(this, favorito, Toast.LENGTH_SHORT).show();
+
+
 
     }
 

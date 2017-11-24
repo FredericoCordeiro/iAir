@@ -19,6 +19,7 @@ import java.util.List;
 
 public class AdapterCidades extends ArrayAdapter<String> {
 
+
     public AdapterCidades(Context context, ArrayList<String> cidades) {
         super(context, 0, cidades);
     }
