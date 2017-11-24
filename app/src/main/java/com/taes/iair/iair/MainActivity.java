@@ -20,10 +20,12 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.util.ArrayList;
+
 public class MainActivity extends AppCompatActivity {
 
 
-
+    String favorito;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -33,7 +35,7 @@ public class MainActivity extends AppCompatActivity {
 
 
         SharedPreferences prefs = this.getSharedPreferences("favorito", Context.MODE_PRIVATE);
-        String favorito = prefs.getString("favorito",null);
+        favorito = prefs.getString("favorito",null);
         Toast.makeText(this, favorito, Toast.LENGTH_SHORT).show();
 
 
@@ -43,7 +45,58 @@ public class MainActivity extends AppCompatActivity {
     public void atualizarQualidadeAr(){
 
         RequestQueue queue = Volley.newRequestQueue(this);
-        String url ="https://api.thingspeak.com/channels/365262/feeds.json?results=2";
+        String url;
+        switch (favorito){
+            case "Aveiro":
+                
+                break;
+            case "Beja":
+
+                break;
+            case "Braga":
+
+                break;
+            case "Bragança":
+
+                break;
+            case "Castelo Branco":
+
+                break;
+            case "Coimbra":
+
+                break;
+            case "Évora":
+
+                break;
+            case "Faro":
+
+                break;
+            case "Guarda":
+
+                break;
+            case "Leiria":
+
+                break;
+            case "Lisboa":
+
+                break;
+            case "Portalegre":
+
+                break;
+            case "Porto":
+
+                break;
+            case "Santarém":
+
+                break;
+        }
+
+        // url ="https://api.thingspeak.com/channels/365262/feeds.json?results=1";
+
+
+
+
+
 
         StringRequest stringRequest = new StringRequest(Request.Method.GET, url,
                 new Response.Listener<String>() {
@@ -52,7 +105,25 @@ public class MainActivity extends AppCompatActivity {
                         try {
                             JSONObject mainObject = new JSONObject(response);
                             JSONArray feeds = mainObject.getJSONArray("feeds");
+                            //JSONObject ultimaInfo = null;
+
+                            ArrayList<JSONObject> list = new ArrayList<JSONObject>();
+                            if (feeds != null) {
+                                int len = feeds.length();
+                                for (int i=0;i<len;i++){
+                                    list.add((JSONObject) feeds.get(i));
+                                }
+                            }
+                            for(int i= list.size()-1;i>=0;i--){
+                                JSONObject atual;
+                                atual= list.get(i);
+
+
+
+                            }
+
                             JSONObject ultimaInfo = feeds.getJSONObject(feeds.length()-1);
+
 
                             atualizarTextBoxes(ultimaInfo.getInt("field3"),
                                     ultimaInfo.getInt("field2"),
@@ -80,7 +151,7 @@ public class MainActivity extends AppCompatActivity {
         final TextView txtTemp = findViewById(R.id.textViewTempAr);
 
         txtTemp.setText(String.valueOf(temp+" ºC"));
-        txtPressAtm.setText(String.valueOf(pressAtm+" atm"));
+        txtPressAtm.setText(String.valueOf(pressAtm+" hPa"));
         txtHum.setText(String.valueOf(hum+" %"));
 
     }
