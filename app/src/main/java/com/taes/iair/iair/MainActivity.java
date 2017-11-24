@@ -36,7 +36,7 @@ public class MainActivity extends AppCompatActivity {
 
         SharedPreferences prefs = this.getSharedPreferences("favorito", Context.MODE_PRIVATE);
         favorito = prefs.getString("favorito",null);
-        Toast.makeText(this, favorito, Toast.LENGTH_SHORT).show();
+        //Toast.makeText(this, favorito, Toast.LENGTH_SHORT).show();
 
 
 
@@ -45,49 +45,63 @@ public class MainActivity extends AppCompatActivity {
     public void atualizarQualidadeAr(){
 
         RequestQueue queue = Volley.newRequestQueue(this);
-        String url;
+        String url=null;
         switch (favorito){
             case "Aveiro":
-                
+                url="https://api.thingspeak.com/channels/372029/feeds.json?results=1";
                 break;
             case "Beja":
-
+                url="https://api.thingspeak.com/channels/372033/feeds.json?results=1";
                 break;
             case "Braga":
-
+                url="https://api.thingspeak.com/channels/372035/feeds.json?results=1";
                 break;
             case "Bragança":
-
+                url="https://api.thingspeak.com/channels/372037/feeds.json?results=1";
                 break;
             case "Castelo Branco":
-
+                url="https://api.thingspeak.com/channels/372040/feeds.json?results=1";
                 break;
             case "Coimbra":
-
+                url="https://api.thingspeak.com/channels/372041/feeds.json?results=1";
                 break;
             case "Évora":
-
+                url="https://api.thingspeak.com/channels/372045/feeds.json?results=1";
                 break;
             case "Faro":
-
+                url="https://api.thingspeak.com/channels/372046/feeds.json?results=1";
                 break;
             case "Guarda":
-
+                url="https://api.thingspeak.com/channels/372047/feeds.json?results=1";
                 break;
             case "Leiria":
-
+                url="https://api.thingspeak.com/channels/372048/feeds.json?results=1";
                 break;
             case "Lisboa":
-
+                url="https://api.thingspeak.com/channels/372050/feeds.json?results=1";
                 break;
             case "Portalegre":
-
+                url="https://api.thingspeak.com/channels/372052/feeds.json?results=1";
                 break;
             case "Porto":
-
+                url="https://api.thingspeak.com/channels/372053/feeds.json?results=1";
                 break;
             case "Santarém":
-
+                url="https://api.thingspeak.com/channels/372058/feeds.json?results=1";
+                break;
+            case "Setúbal":
+                url="https://api.thingspeak.com/channels/372059/feeds.json?results=1";
+                break;
+            case "Viana do Castelo":
+                url="https://api.thingspeak.com/channels/372060/feeds.json?results=1";
+                break;
+            case "Vila Real":
+                url="https://api.thingspeak.com/channels/372061/feeds.json?results=1";
+                break;
+            case "Viseu":
+                url="https://api.thingspeak.com/channels/372062/feeds.json?results=1";
+                break;
+            default:
                 break;
         }
 
