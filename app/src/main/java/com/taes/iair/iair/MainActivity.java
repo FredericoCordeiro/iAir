@@ -38,6 +38,8 @@ public class MainActivity extends AppCompatActivity {
         favorito = prefs.getString("favorito","Lisboa");
         //Toast.makeText(this, favorito, Toast.LENGTH_SHORT).show();
 
+        TextView txtCidade = findViewById(R.id.textCidadeName);
+        txtCidade.setText(favorito);
         atualizarQualidadeAr();
 
     }
