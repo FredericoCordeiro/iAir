@@ -72,6 +72,7 @@ public class SensoresActivity extends AppCompatActivity implements SensorEventLi
     Float humidade;
     Float pressao;
     Float temperatura;
+    String local;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -91,35 +92,100 @@ public class SensoresActivity extends AppCompatActivity implements SensorEventLi
         final Button button = findViewById(R.id.button3);
         button.setOnClickListener(new View.OnClickListener() {
                 public void onClick(View v) {
-
-                    RequestQueue queue = Volley.newRequestQueue(SensoresActivity.this);
-                    String url ="https://api.thingspeak.com/update?api_key=1YT7WMY3WKP7A9XD&field1=" +
-                            "utilizador"+
-                            "&field2="+pressao.toString()
-                            +"&field3="+temperatura.toString()
-                            +"&field4="+humidade.toString();
-
-                    StringRequest stringRequest = new StringRequest(Request.Method.GET, url,
-                            new Response.Listener<String>() {
-                                @Override
-                                public void onResponse(String response) {
-                                    // Display the first 500 characters of the response string.
-                                    Toast.makeText(SensoresActivity.this, response.toString(), Toast.LENGTH_SHORT).show();
-                                }
-                            }, new Response.ErrorListener() {
-                        @Override
-                        public void onErrorResponse(VolleyError error) {
-                            Toast.makeText(SensoresActivity.this, "Erro a inserir", Toast.LENGTH_SHORT).show();
-                        }
-                    });
-
-                    queue.add(stringRequest);
+                   inserir(local);
             }
         });
 
     }
 
+    public void inserir(String local){
+        RequestQueue queue = Volley.newRequestQueue(SensoresActivity.this);
 
+        String url=null;
+        String localEditado = local.replace(" District","");
+        switch (localEditado){
+            case "Aveiro":
+                url="https://api.thingspeak.com/update?api_key=7BO8XWET38ZI4409";
+                break;
+            case "Beja":
+                url="https://api.thingspeak.com/update?api_key=8B3DOEMM72JXVSYF";
+                break;
+            case "Braga":
+                url="https://api.thingspeak.com/update?api_key=6DBFN10XZZGJ9LGX";
+                break;
+            case "Bragança":
+                url="https://api.thingspeak.com/update?api_key=LYHTHTR3XC2AM81R";
+                break;
+            case "Castelo Branco":
+                url="https://api.thingspeak.com/update?api_key=S563HKMA2NRPYHEA";
+                break;
+            case "Coimbra":
+                url="https://api.thingspeak.com/update?api_key=PHN6KUIHALPP8ZPV";
+                break;
+            case "Évora":
+                url="https://api.thingspeak.com/update?api_key=CA99MQY18CHPIG4F";
+                break;
+            case "Faro":
+                url="https://api.thingspeak.com/update?api_key=2IOYZBBB6M56O3EL";
+                break;
+            case "Guarda":
+                url="https://api.thingspeak.com/update?api_key=39FOLF56WD2QTAEI";
+                break;
+            case "Leiria":
+                url="https://api.thingspeak.com/update?api_key=K7XNKM5IS38EYMZQ";
+                break;
+            case "Lisboa":
+                url="https://api.thingspeak.com/update?api_key=RBJC34V1T0TWCGII";
+                break;
+            case "Portalegre":
+                url="https://api.thingspeak.com/update?api_key=QUX66JERJ9KJMMRL";
+                break;
+            case "Porto":
+                url="https://api.thingspeak.com/update?api_key=MTC7VIH57WY8BX0D";
+                break;
+            case "Santarém":
+                url="https://api.thingspeak.com/update?api_key=06F21KX1YRSPP1T6";
+                break;
+            case "Setúbal":
+                url="https://api.thingspeak.com/update?api_key=IRO2XLLDLL6K1HT4";
+                break;
+            case "Viana do Castelo":
+                url="https://api.thingspeak.com/update?api_key=SX81TQHF0O4OJB8G";
+                break;
+            case "Vila Real":
+                url="https://api.thingspeak.com/update?api_key=XRRQQGAD15D9PU0E";
+                break;
+            case "Viseu":
+                url="https://api.thingspeak.com/update?api_key=Z5FHMA0E5W3YWPLI";
+                break;
+            default:
+                break;
+        }
+
+
+
+
+        url +=" &field1=" +"utilizador"+
+                "&field2="+pressao.toString()
+                +"&field3="+temperatura.toString()
+                +"&field4="+humidade.toString();
+
+        StringRequest stringRequest = new StringRequest(Request.Method.GET, url,
+                new Response.Listener<String>() {
+                    @Override
+                    public void onResponse(String response) {
+                        // Display the first 500 characters of the response string.
+                        Toast.makeText(SensoresActivity.this, response.toString(), Toast.LENGTH_SHORT).show();
+                    }
+                }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                Toast.makeText(SensoresActivity.this, "Erro a inserir", Toast.LENGTH_SHORT).show();
+            }
+        });
+
+        queue.add(stringRequest);
+    }
 
 
     public void verificarPresencaSensores(){
@@ -214,6 +280,7 @@ public class SensoresActivity extends AppCompatActivity implements SensorEventLi
                 if(cityName==null){
                     txtLocal.setText("N/A");
                 }else{
+                    local=cityName;
                     txtLocal.setText(cityName);
                 }
             }

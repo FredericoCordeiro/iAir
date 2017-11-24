@@ -35,7 +35,7 @@ public class MainActivity extends AppCompatActivity {
 
 
         SharedPreferences prefs = this.getSharedPreferences("favorito", Context.MODE_PRIVATE);
-        favorito = prefs.getString("favorito",null);
+        favorito = prefs.getString("favorito","Lisboa");
         //Toast.makeText(this, favorito, Toast.LENGTH_SHORT).show();
 
         atualizarQualidadeAr();
