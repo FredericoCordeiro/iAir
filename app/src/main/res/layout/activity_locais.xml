@@ -18,6 +18,8 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_weight="0"
+            android:choiceMode="singleChoice"
+            android:descendantFocusability="beforeDescendants"
             tools:listitem="@layout/item_listview_favorito" />
     </LinearLayout>
 

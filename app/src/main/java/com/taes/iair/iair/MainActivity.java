@@ -31,9 +31,8 @@ public class MainActivity extends AppCompatActivity {
 
 
 
-        //SharedPreferences prefs = this.getSharedPreferences(
-       //"favorito", Context.MODE_PRIVATE);
-        //prefs.edit().putString("favorito", "Leiria").apply();
+        SharedPreferences prefs = this.getSharedPreferences("favorito", Context.MODE_PRIVATE);
+        prefs.edit().putString("favorito", "Leiria").apply();
 
     }
 
