@@ -3,8 +3,8 @@
     package="com.taes.iair.iair">
 
     <uses-permission android:name="android.permission.INTERNET" />
-     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION"/>
-    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION"/>
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
 
     <application
         android:allowBackup="true"
@@ -27,6 +27,7 @@
         </activity>
         <activity android:name=".InfoLocalActivity" />
         <activity android:name=".SensoresActivity" />
+        <activity android:name=".UsernameActivity"></activity>
     </application>
 
 </manifest>
