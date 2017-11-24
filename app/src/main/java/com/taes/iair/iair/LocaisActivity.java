@@ -170,6 +170,38 @@ public class LocaisActivity extends AppCompatActivity {
                         break;
                     case 3:callInfoLocalActivity();
                         break;
+                    case 4:
+                        callInfoLocalActivity();
+                        break;
+                    case 5: callInfoLocalActivity();
+                        break;
+                    case 6:callInfoLocalActivity();
+                        break;
+                    case 7:callInfoLocalActivity();
+                        break;
+                    case 8:
+                        callInfoLocalActivity();
+                        break;
+                    case 9: callInfoLocalActivity();
+                        break;
+                    case 10:callInfoLocalActivity();
+                        break;
+                    case 11:callInfoLocalActivity();
+                        break;
+                    case 12:
+                        callInfoLocalActivity();
+                        break;
+                    case 13: callInfoLocalActivity();
+                        break;
+                    case 14:callInfoLocalActivity();
+                        break;
+                    case 15:callInfoLocalActivity();
+                        break;
+                    case 16:
+                        callInfoLocalActivity();
+                        break;
+                    case 17: callInfoLocalActivity();
+                        break;
                 }
 
             }
