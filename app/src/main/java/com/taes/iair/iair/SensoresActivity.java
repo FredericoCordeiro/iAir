@@ -24,9 +24,21 @@ import android.support.v4.app.ActivityCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
+import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.StringRequest;
+import com.android.volley.toolbox.Volley;
+
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
 import org.w3c.dom.Text;
 
 import java.io.IOException;
@@ -57,6 +69,9 @@ public class SensoresActivity extends AppCompatActivity implements SensorEventLi
     TextView txtHumidade ;
     TextView txtPressure;
     TextView txtTemperature;
+    Float humidade;
+    Float pressao;
+    Float temperatura;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -73,7 +88,34 @@ public class SensoresActivity extends AppCompatActivity implements SensorEventLi
 
         verificarPresencaSensores();
 
+        final Button button = findViewById(R.id.button3);
+        button.setOnClickListener(new View.OnClickListener() {
+                public void onClick(View v) {
 
+                    RequestQueue queue = Volley.newRequestQueue(SensoresActivity.this);
+                    String url ="https://api.thingspeak.com/update?api_key=1YT7WMY3WKP7A9XD&field1=" +
+                            "utilizador"+
+                            "&field2="+pressao.toString()
+                            +"&field3="+temperatura.toString()
+                            +"&field4="+humidade.toString();
+
+                    StringRequest stringRequest = new StringRequest(Request.Method.GET, url,
+                            new Response.Listener<String>() {
+                                @Override
+                                public void onResponse(String response) {
+                                    // Display the first 500 characters of the response string.
+                                    Toast.makeText(SensoresActivity.this, response.toString(), Toast.LENGTH_SHORT).show();
+                                }
+                            }, new Response.ErrorListener() {
+                        @Override
+                        public void onErrorResponse(VolleyError error) {
+                            Toast.makeText(SensoresActivity.this, "Erro a inserir", Toast.LENGTH_SHORT).show();
+                        }
+                    });
+
+                    queue.add(stringRequest);
+            }
+        });
 
     }
 
@@ -142,12 +184,19 @@ public class SensoresActivity extends AppCompatActivity implements SensorEventLi
     @Override
     public void onSensorChanged(SensorEvent event) {
 
-        if (event.sensor.getType() == Sensor.TYPE_AMBIENT_TEMPERATURE)
-            txtTemperature.setText(String.valueOf(event.values[0])+" ºC");
-        if (event.sensor.getType() == Sensor.TYPE_PRESSURE)
-            txtPressure.setText(String.valueOf(event.values[0])+" hPa");
-        if(event.sensor.getType() == Sensor.TYPE_RELATIVE_HUMIDITY)
-            txtHumidade.setText(String.valueOf(event.values[0])+" %");
+        if (event.sensor.getType() == Sensor.TYPE_AMBIENT_TEMPERATURE) {
+            temperatura = event.values[0];
+            txtTemperature.setText(String.valueOf(temperatura) + " ºC");
+        }
+        if (event.sensor.getType() == Sensor.TYPE_PRESSURE){
+            pressao = event.values[0];
+            txtPressure.setText(String.valueOf(pressao)+" hPa");
+        }
+        if(event.sensor.getType() == Sensor.TYPE_RELATIVE_HUMIDITY){
+            humidade = event.values[0];
+            txtHumidade.setText(String.valueOf(humidade)+" %");
+        }
+
     }
 
     public void getCity(double latitude, double longitude) {

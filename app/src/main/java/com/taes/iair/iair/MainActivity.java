@@ -31,14 +31,14 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-         atualizarQualidadeAr();
+
 
 
         SharedPreferences prefs = this.getSharedPreferences("favorito", Context.MODE_PRIVATE);
         favorito = prefs.getString("favorito",null);
         //Toast.makeText(this, favorito, Toast.LENGTH_SHORT).show();
 
-
+        atualizarQualidadeAr();
 
     }
 
