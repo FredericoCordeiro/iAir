@@ -105,13 +105,6 @@ public class MainActivity extends AppCompatActivity {
                 break;
         }
 
-        // url ="https://api.thingspeak.com/channels/365262/feeds.json?results=1";
-
-
-
-
-
-
         StringRequest stringRequest = new StringRequest(Request.Method.GET, url,
                 new Response.Listener<String>() {
                     @Override
