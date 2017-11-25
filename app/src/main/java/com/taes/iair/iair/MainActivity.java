@@ -166,6 +166,7 @@ public class MainActivity extends AppCompatActivity {
                                     ultimaInfo.getInt("field4"));
 
                               } catch (JSONException e) {
+                            atualizarTextBoxes(-1,-1,-1);
                             e.printStackTrace();
                         }
 
@@ -186,9 +187,15 @@ public class MainActivity extends AppCompatActivity {
         final TextView txtPressAtm = findViewById(R.id.textViewPressAtm);
         final TextView txtTemp = findViewById(R.id.textViewTempAr);
 
-        txtTemp.setText(String.valueOf(temp+" ºC"));
-        txtPressAtm.setText(String.valueOf(pressAtm+" hPa"));
-        txtHum.setText(String.valueOf(hum+" %"));
+        if (temp==-1 && pressAtm==-1 && hum==-1){
+            txtTemp.setText("N/A");
+            txtPressAtm.setText("N/A");
+            txtHum.setText("N/A");
+        }else{
+            txtTemp.setText(String.valueOf(temp+" ºC"));
+            txtPressAtm.setText(String.valueOf(pressAtm+" hPa"));
+            txtHum.setText(String.valueOf(hum+" %"));
+        }
 
     }
 

@@ -77,6 +77,7 @@ public class SensoresActivity extends AppCompatActivity implements SensorEventLi
     Float pressao;
     Float temperatura;
     String local;
+    String username;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -89,8 +90,8 @@ public class SensoresActivity extends AppCompatActivity implements SensorEventLi
 
         mSensorManager = (SensorManager) getSystemService(Context.SENSOR_SERVICE);
 
-        SharedPreferences prefs = this.getSharedPreferences("username", Context.MODE_PRIVATE);
-        String username = prefs.getString("username","N/A");
+        final SharedPreferences prefs = this.getSharedPreferences("username", Context.MODE_PRIVATE);
+        username = prefs.getString("username","N/A");
         Toast.makeText(this, username, Toast.LENGTH_SHORT).show();
 
         verificarPresencaSensores();
@@ -98,7 +99,15 @@ public class SensoresActivity extends AppCompatActivity implements SensorEventLi
         final Button button = findViewById(R.id.button3);
         button.setOnClickListener(new View.OnClickListener() {
                 public void onClick(View v) {
-                   inserir(local);
+                    username = prefs.getString("username", "N/A");
+                    if (username.isEmpty()){
+                        Toast.makeText(SensoresActivity.this, "Tem de definir um Username no Menu de Opções para poder publicar!", Toast.LENGTH_SHORT).show();
+                    }else{
+                        Toast.makeText(SensoresActivity.this, "Inserir", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(SensoresActivity.this, username, Toast.LENGTH_SHORT).show();
+                        //inserir(local);
+                    }
+                    
             }
         });
 
@@ -123,6 +132,8 @@ public class SensoresActivity extends AppCompatActivity implements SensorEventLi
     }
 
     public void inserir(String local){
+        
+        
         RequestQueue queue = Volley.newRequestQueue(SensoresActivity.this);
 
         String url=null;
@@ -189,7 +200,7 @@ public class SensoresActivity extends AppCompatActivity implements SensorEventLi
 
 
 
-        url +=" &field1=" +"utilizador"+
+        url +=" &field1=" +username+
                 "&field2="+pressao.toString()
                 +"&field3="+temperatura.toString()
                 +"&field4="+humidade.toString();
