@@ -162,45 +162,45 @@ public class LocaisActivity extends AppCompatActivity {
 
                 switch (position) {
                     case 0:
-                        callInfoLocalActivity();
+                        callInfoLocalActivity("Aveiro");
                         break;
-                    case 1: callInfoLocalActivity();
+                    case 1: callInfoLocalActivity("Beja");
                         break;
-                    case 2:callInfoLocalActivity();
+                    case 2:callInfoLocalActivity("Braga");
                         break;
-                    case 3:callInfoLocalActivity();
+                    case 3:callInfoLocalActivity("Bragança");
                         break;
                     case 4:
-                        callInfoLocalActivity();
+                        callInfoLocalActivity("Castelo Branco");
                         break;
-                    case 5: callInfoLocalActivity();
+                    case 5: callInfoLocalActivity("Coimbra");
                         break;
-                    case 6:callInfoLocalActivity();
+                    case 6:callInfoLocalActivity("Évora");
                         break;
-                    case 7:callInfoLocalActivity();
+                    case 7:callInfoLocalActivity("Faro");
                         break;
                     case 8:
-                        callInfoLocalActivity();
+                        callInfoLocalActivity("Guarda");
                         break;
-                    case 9: callInfoLocalActivity();
+                    case 9: callInfoLocalActivity("Leiria");
                         break;
-                    case 10:callInfoLocalActivity();
+                    case 10:callInfoLocalActivity("Lisboa");
                         break;
-                    case 11:callInfoLocalActivity();
+                    case 11:callInfoLocalActivity("Portalegre");
                         break;
                     case 12:
-                        callInfoLocalActivity();
+                        callInfoLocalActivity("Porto");
                         break;
-                    case 13: callInfoLocalActivity();
+                    case 13: callInfoLocalActivity("Santarém");
                         break;
-                    case 14:callInfoLocalActivity();
+                    case 14:callInfoLocalActivity("Setúbal");
                         break;
-                    case 15:callInfoLocalActivity();
+                    case 15:callInfoLocalActivity("Viana do Castelo");
                         break;
                     case 16:
-                        callInfoLocalActivity();
+                        callInfoLocalActivity("Vila Real");
                         break;
-                    case 17: callInfoLocalActivity();
+                    case 17: callInfoLocalActivity("Viseu");
                         break;
                 }
 
@@ -238,8 +238,9 @@ public class LocaisActivity extends AppCompatActivity {
         return cidades;
     }
 
-    private void callInfoLocalActivity() {
+    private void callInfoLocalActivity(String name) {
         Intent it = new Intent(this, InfoLocalActivity.class);
+        it.putExtra("nome", name);
         startActivity(it);
     }
 

@@ -22,6 +22,7 @@ public class UsernameActivity extends AppCompatActivity {
 
         editText = (EditText) findViewById(R.id.editTextUsername);
         editText.setText(username);
+        editText.requestFocus();
     }
 
     public void onClickUsername(View view) {
