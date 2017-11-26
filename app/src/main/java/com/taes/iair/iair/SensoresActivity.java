@@ -103,9 +103,9 @@ public class SensoresActivity extends AppCompatActivity implements SensorEventLi
                     if (username.isEmpty()){
                         Toast.makeText(SensoresActivity.this, "Tem de definir um Username no Menu de Opções para poder publicar!", Toast.LENGTH_SHORT).show();
                     }else{
-                        Toast.makeText(SensoresActivity.this, "Inserir", Toast.LENGTH_SHORT).show();
-                        Toast.makeText(SensoresActivity.this, username, Toast.LENGTH_SHORT).show();
-                        //inserir(local);
+                        //Toast.makeText(SensoresActivity.this, "Inserir", Toast.LENGTH_SHORT).show();
+                        //Toast.makeText(SensoresActivity.this, username, Toast.LENGTH_SHORT).show();
+                        inserir(local);
                     }
                     
             }
@@ -138,6 +138,7 @@ public class SensoresActivity extends AppCompatActivity implements SensorEventLi
 
         String url=null;
         String localEditado = local.replace(" District","");
+
         switch (localEditado){
             case "Aveiro":
                 url="https://api.thingspeak.com/update?api_key=7BO8XWET38ZI4409";
