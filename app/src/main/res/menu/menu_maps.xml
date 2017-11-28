@@ -4,7 +4,8 @@
 
     <item
         android:id="@+id/itemLocFav"
-        android:icon="@android:drawable/btn_star"
-        android:title="Item"
+        android:checked="false"
+        android:icon="@android:drawable/star_off"
+        android:title="Adicionar Favorito"
         app:showAsAction="always" />
 </menu>

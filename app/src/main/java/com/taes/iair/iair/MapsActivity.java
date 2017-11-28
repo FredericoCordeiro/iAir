@@ -9,6 +9,7 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
+import android.graphics.drawable.Drawable;
 import android.location.Address;
 import android.location.Geocoder;
 import android.location.Location;
@@ -19,6 +20,7 @@ import android.provider.Settings;
 import android.support.v4.app.FragmentActivity;
 import android.os.Bundle;
 import android.support.v4.content.ContextCompat;
+import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -38,9 +40,10 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
 
-public class MapsActivity extends FragmentActivity implements OnMapReadyCallback, LocationListener {
+public class MapsActivity extends AppCompatActivity implements OnMapReadyCallback, LocationListener {
 
     private GoogleMap mMap;
+
 
 //PERMISSOES
     final String TAG = "GPS";
@@ -68,12 +71,18 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_maps);
+
+
+
+
+
         // Obtain the SupportMapFragment and get notified when the map is ready to be used.
         SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
                 .findFragmentById(R.id.map);
         mapFragment.getMapAsync(this);
 
         prefs = this.getSharedPreferences("favorito", Context.MODE_PRIVATE);
+
 
         locationManager = (LocationManager) getSystemService(Service.LOCATION_SERVICE);
         isGPS = locationManager.isProviderEnabled(LocationManager.GPS_PROVIDER);
@@ -103,6 +112,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
+
         MenuInflater inflater = getMenuInflater();
         inflater.inflate(R.menu.menu_maps, menu);
 
@@ -112,6 +122,12 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         if (item.getItemId()==R.id.itemLocFav){
+
+
+            item.setIcon(android.R.drawable.star_on);
+
+
+
             String localEditado = local.replace(" District","");
             prefs.edit().putString("favorito", localEditado).apply();
         }
@@ -283,8 +299,9 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                 if(cityName==null){
 
                 }else{
-                    //Toast.makeText(this, "LOCAL "+local, Toast.LENGTH_SHORT).show();
                     local=cityName;
+                    Toast.makeText(this, local, Toast.LENGTH_SHORT).show();
+
                 }
             }
 
@@ -295,7 +312,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
         String s = latitude + "\n" + longitude +
                 "\n\nMy Currrent City is: " + cityName;
-        //Toast.makeText(SensoresActivity.this, s+addresses.get(0).getLocality(), Toast.LENGTH_SHORT).show();
+
     }
 
     private void getLocation() {
@@ -340,5 +357,4 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
             e.printStackTrace();
         }
     }
-
 }
