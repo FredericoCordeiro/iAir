@@ -45,7 +45,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 //PERMISSOES
     final String TAG = "GPS";
 
-
+    SharedPreferences prefs;
 
     ArrayList<String> permissions = new ArrayList<>();
     ArrayList<String> permissionsToRequest;
@@ -63,7 +63,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     Location loc;
     private static final long MIN_DISTANCE_CHANGE_FOR_UPDATES = 10;
     private static final long MIN_TIME_BW_UPDATES = 0;
-    final SharedPreferences prefs = this.getSharedPreferences("favorito", Context.MODE_PRIVATE);
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -73,7 +73,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                 .findFragmentById(R.id.map);
         mapFragment.getMapAsync(this);
 
-
+        prefs = this.getSharedPreferences("favorito", Context.MODE_PRIVATE);
 
         locationManager = (LocationManager) getSystemService(Service.LOCATION_SERVICE);
         isGPS = locationManager.isProviderEnabled(LocationManager.GPS_PROVIDER);
