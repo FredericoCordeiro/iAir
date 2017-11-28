@@ -4,8 +4,10 @@ import android.Manifest;
 import android.annotation.TargetApi;
 import android.app.AlertDialog;
 import android.app.Service;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.location.Address;
 import android.location.Geocoder;
@@ -18,6 +20,9 @@ import android.support.v4.app.FragmentActivity;
 import android.os.Bundle;
 import android.support.v4.content.ContextCompat;
 import android.util.Log;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -40,6 +45,8 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 //PERMISSOES
     final String TAG = "GPS";
 
+
+
     ArrayList<String> permissions = new ArrayList<>();
     ArrayList<String> permissionsToRequest;
     ArrayList<String> permissionsRejected = new ArrayList<>();
@@ -56,7 +63,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     Location loc;
     private static final long MIN_DISTANCE_CHANGE_FOR_UPDATES = 10;
     private static final long MIN_TIME_BW_UPDATES = 0;
-
+    final SharedPreferences prefs = this.getSharedPreferences("favorito", Context.MODE_PRIVATE);
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -65,6 +72,8 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
                 .findFragmentById(R.id.map);
         mapFragment.getMapAsync(this);
+
+
 
         locationManager = (LocationManager) getSystemService(Service.LOCATION_SERVICE);
         isGPS = locationManager.isProviderEnabled(LocationManager.GPS_PROVIDER);
@@ -89,9 +98,26 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
             }
             getLocation();
 
-    }
+        }
     }
 
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.menu_maps, menu);
+
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        if (item.getItemId()==R.id.itemLocFav){
+            String localEditado = local.replace(" District","");
+            prefs.edit().putString("favorito", localEditado).apply();
+        }
+
+        return super.onOptionsItemSelected(item);
+    }
 
     /**
      * Manipulates the map once available.
@@ -257,7 +283,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                 if(cityName==null){
 
                 }else{
-                    Toast.makeText(this, "LOCAL "+local, Toast.LENGTH_SHORT).show();
+                    //Toast.makeText(this, "LOCAL "+local, Toast.LENGTH_SHORT).show();
                     local=cityName;
                 }
             }
