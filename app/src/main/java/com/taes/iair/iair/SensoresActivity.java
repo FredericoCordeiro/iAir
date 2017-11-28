@@ -73,10 +73,12 @@ public class SensoresActivity extends AppCompatActivity implements SensorEventLi
     TextView txtHumidade ;
     TextView txtPressure;
     TextView txtTemperature;
+    TextView txtLocation;
+
     Float humidade;
     Float pressao;
     Float temperatura;
-    String local;
+    String local="";
     String username;
 
     @Override
@@ -87,12 +89,14 @@ public class SensoresActivity extends AppCompatActivity implements SensorEventLi
         txtHumidade = (TextView) findViewById(R.id.txtHum);
         txtPressure = (TextView)findViewById(R.id.txtPress);
         txtTemperature = (TextView)findViewById(R.id.txtTemp);
+        txtLocation = (TextView) findViewById(R.id.textViewLocation);
+        
 
         mSensorManager = (SensorManager) getSystemService(Context.SENSOR_SERVICE);
 
         final SharedPreferences prefs = this.getSharedPreferences("username", Context.MODE_PRIVATE);
         username = prefs.getString("username","N/A");
-        Toast.makeText(this, username, Toast.LENGTH_SHORT).show();
+        //Toast.makeText(this, username, Toast.LENGTH_SHORT).show();
 
         verificarPresencaSensores();
 
@@ -100,14 +104,15 @@ public class SensoresActivity extends AppCompatActivity implements SensorEventLi
         button.setOnClickListener(new View.OnClickListener() {
                 public void onClick(View v) {
                     username = prefs.getString("username", "N/A");
-                    if (username.isEmpty()){
-                        Toast.makeText(SensoresActivity.this, "Tem de definir um Username no Menu de Opções para poder publicar!", Toast.LENGTH_SHORT).show();
-                    }else{
-                        //Toast.makeText(SensoresActivity.this, "Inserir", Toast.LENGTH_SHORT).show();
-                        //Toast.makeText(SensoresActivity.this, username, Toast.LENGTH_SHORT).show();
-                        inserir(local);
+                    if (txtLocation.getText().toString()=="N/A"){
+                        Toast.makeText(SensoresActivity.this, "Erro ao identificar as coordenadas do local!", Toast.LENGTH_SHORT).show();
+                    }else {
+                        if (username.isEmpty()) {
+                            Toast.makeText(SensoresActivity.this, "Tem de definir um Username no Menu de Opções para poder publicar!", Toast.LENGTH_SHORT).show();
+                        } else {
+                            inserir(local);
+                        }
                     }
-                    
             }
         });
 
@@ -195,6 +200,7 @@ public class SensoresActivity extends AppCompatActivity implements SensorEventLi
                 url="https://api.thingspeak.com/update?api_key=Z5FHMA0E5W3YWPLI";
                 break;
             default:
+                Toast.makeText(this, "Erro ao identificar o Local!", Toast.LENGTH_SHORT).show();
                 break;
         }
 

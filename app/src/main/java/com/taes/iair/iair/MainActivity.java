@@ -210,5 +210,11 @@ public class MainActivity extends AppCompatActivity {
 
         startActivity(it);
     }
+
+    public void onClickMyLoc(View view) {
+        Intent it = new Intent(this, MapsActivity.class);
+
+        startActivity(it);
     }
+}
 
