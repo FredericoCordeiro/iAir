@@ -107,7 +107,7 @@ public class SensoresActivity extends AppCompatActivity implements SensorEventLi
                     if (txtLocation.getText().toString()=="N/A"){
                         Toast.makeText(SensoresActivity.this, "Erro ao identificar as coordenadas do local!", Toast.LENGTH_SHORT).show();
                     }else {
-                        if (username.isEmpty() || username=="N/A") {
+                        if (username.isEmpty()||username=="N/A") {
                             Toast.makeText(SensoresActivity.this, "Tem de definir um Username no Menu de Opções para poder publicar!", Toast.LENGTH_SHORT).show();
                         } else {
                             inserir(local);
@@ -217,7 +217,8 @@ public class SensoresActivity extends AppCompatActivity implements SensorEventLi
                     @Override
                     public void onResponse(String response) {
                         // Display the first 500 characters of the response string.
-                        Toast.makeText(SensoresActivity.this, response.toString(), Toast.LENGTH_SHORT).show();
+                        Toast.makeText(SensoresActivity.this, "Publicado com sucesso! Nº registo : "+response, Toast.LENGTH_SHORT).show();
+                        finish();
                     }
                 }, new Response.ErrorListener() {
             @Override
