@@ -3,6 +3,7 @@ package com.taes.iair.iair;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -153,5 +154,11 @@ public class InfoLocalActivity extends AppCompatActivity {
         txtPressAtm.setText(String.valueOf(pressAtm+" hPa"));
         txtHum.setText(String.valueOf(hum+" %"));
 
+    }
+
+    public void onClickAddEvento(View view) {
+        Intent it = new Intent(this, NovoEventoActivity.class);
+        it.putExtra("nome", nome);
+        startActivity(it);
     }
 }

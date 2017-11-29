@@ -45,7 +45,7 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
     private GoogleMap mMap;
 
 
-//PERMISSOES
+    //PERMISSOES
     final String TAG = "GPS";
 
     SharedPreferences prefs;
@@ -62,17 +62,17 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
     boolean isNetwork = false;
    //FIM PERMISSOES
 
-    String local="";
+    String local="N/A";
     Location loc;
     private static final long MIN_DISTANCE_CHANGE_FOR_UPDATES = 10;
     private static final long MIN_TIME_BW_UPDATES = 0;
+
+    Menu menu;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_maps);
-
-
 
 
 
@@ -106,15 +106,23 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
                 }
             }
             getLocation();
-
         }
     }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-
-        MenuInflater inflater = getMenuInflater();
+        MenuInflater inflater= getMenuInflater();
         inflater.inflate(R.menu.menu_maps, menu);
+
+        if (local.contains(" District")){
+            String localEditado = local.replace(" District","");
+            String favorito = prefs.getString("favorito",null);
+            if (favorito.compareTo(localEditado)==0){
+                menu.findItem(R.id.itemLocFav).setIcon(android.R.drawable.star_on);
+            }
+        }
+
+
 
         return true;
     }
@@ -123,13 +131,16 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
     public boolean onOptionsItemSelected(MenuItem item) {
         if (item.getItemId()==R.id.itemLocFav){
 
+            if (local != "N/A" && local.contains(" District")){
+                item.setChecked(true);
+                item.setIcon(android.R.drawable.star_on);
 
-            item.setIcon(android.R.drawable.star_on);
+                String localEditado = local.replace(" District","");
+                prefs.edit().putString("favorito", localEditado).apply();
+            }else{
+                Toast.makeText(this, "Local não identificado!", Toast.LENGTH_SHORT).show();
+            }
 
-
-
-            String localEditado = local.replace(" District","");
-            prefs.edit().putString("favorito", localEditado).apply();
         }
 
         return super.onOptionsItemSelected(item);
@@ -297,10 +308,11 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
             if(addresses.size()>0){
                 cityName = addresses.get(0).getAdminArea();
                 if(cityName==null){
-
+                    local="N/A";
                 }else{
                     local=cityName;
                     Toast.makeText(this, local, Toast.LENGTH_SHORT).show();
+
 
                 }
             }

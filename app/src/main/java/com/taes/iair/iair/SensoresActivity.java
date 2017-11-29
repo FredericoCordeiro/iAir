@@ -107,7 +107,7 @@ public class SensoresActivity extends AppCompatActivity implements SensorEventLi
                     if (txtLocation.getText().toString()=="N/A"){
                         Toast.makeText(SensoresActivity.this, "Erro ao identificar as coordenadas do local!", Toast.LENGTH_SHORT).show();
                     }else {
-                        if (username.isEmpty()) {
+                        if (username.isEmpty() || username=="N/A") {
                             Toast.makeText(SensoresActivity.this, "Tem de definir um Username no Menu de Opções para poder publicar!", Toast.LENGTH_SHORT).show();
                         } else {
                             inserir(local);

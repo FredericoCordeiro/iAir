@@ -165,6 +165,7 @@
         android:layout_marginLeft="10dp"
         android:layout_weight="0"
         android:background="@color/ic_location_background"
+        android:onClick="onClickAddEvento"
         android:padding="10dp"
         android:text="Adicionar Evento"
         android:textAlignment="center"
