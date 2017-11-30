@@ -33,6 +33,125 @@ public class InfoLocalActivity extends AppCompatActivity {
         this.setTitle(nome);
 
         atualizarQualidadeAr();
+        atualizarEventos();
+    }
+
+    private void atualizarEventos() {
+        RequestQueue queue = Volley.newRequestQueue(this);
+        String url=null;
+        switch (nome){
+            case "Aveiro":
+                url="https://api.thingspeak.com/channels/375693/feeds.json?results=1";
+                break;
+            case "Beja":
+                url="https://api.thingspeak.com/channels/375694/feeds.json?results=1";
+                break;
+            case "Braga":
+                url="https://api.thingspeak.com/channels/375700/feeds.json?results=1";
+                break;
+            case "Bragança":
+                url="https://api.thingspeak.com/channels/375701/feeds.json?results=1";
+                break;
+            case "Castelo Branco":
+                url="https://api.thingspeak.com/channels/375702/feeds.json?results=1";
+                break;
+            case "Coimbra":
+                url="https://api.thingspeak.com/channels/375703/feeds.json?results=1";
+                break;
+            case "Évora":
+                url="https://api.thingspeak.com/channels/375704/feeds.json?results=1";
+                break;
+            case "Faro":
+                url="https://api.thingspeak.com/channels/375705/feeds.json?results=1";
+                break;
+            case "Guarda":
+                url="https://api.thingspeak.com/channels/375706/feeds.json?results=1";
+                break;
+            case "Leiria":
+                url="https://api.thingspeak.com/channels/375707/feeds.json?results=1";
+                break;
+            case "Lisboa":
+                url="https://api.thingspeak.com/channels/375708/feeds.json?results=1";
+                break;
+            case "Portalegre":
+                url="https://api.thingspeak.com/channels/375710/feeds.json?results=1";
+                break;
+            case "Porto":
+                url="https://api.thingspeak.com/channels/375711/feeds.json?results=1";
+                break;
+            case "Santarém":
+                url="https://api.thingspeak.com/channels/375712/feeds.json?results=1";
+                break;
+            case "Setúbal":
+                url="https://api.thingspeak.com/channels/375713/feeds.json?results=1";
+                break;
+            case "Viana do Castelo":
+                url="https://api.thingspeak.com/channels/375714/feeds.json?results=1";
+                break;
+            case "Vila Real":
+                url="https://api.thingspeak.com/channels/375715/feeds.json?results=1";
+                break;
+            case "Viseu":
+                url="https://api.thingspeak.com/channels/375716/feeds.json?results=1";
+                break;
+            default:
+                break;
+        }
+
+        StringRequest stringRequest = new StringRequest(Request.Method.GET, url,
+                new Response.Listener<String>() {
+                    @Override
+                    public void onResponse(String response) {
+                        try {
+                            JSONObject mainObject = new JSONObject(response);
+                            JSONArray feeds = mainObject.getJSONArray("feeds");
+                            //JSONObject ultimaInfo = null;
+
+                            ArrayList<JSONObject> list = new ArrayList<JSONObject>();
+                            if (feeds != null) {
+                                int len = feeds.length();
+                                for (int i=0;i<len;i++){
+                                    list.add((JSONObject) feeds.get(i));
+                                }
+                            }
+                            for(int i= list.size()-1;i>=0;i--){
+                                JSONObject atual;
+                                atual= list.get(i);
+
+                            }
+
+                            JSONObject ultimaInfo = feeds.getJSONObject(feeds.length()-1);
+
+
+                            atualizarTextBoxesEventos(ultimaInfo.getString("field2"),
+                                    ultimaInfo.getString("field3"),
+                                    ultimaInfo.getString("field4"));
+
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+
+                    }
+
+                }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                Toast.makeText(InfoLocalActivity.this, error.getMessage(), Toast.LENGTH_SHORT).show();
+            }
+        });
+
+        queue.add(stringRequest);
+    }
+
+    private void atualizarTextBoxesEventos(String titulo, String categoria, String descricao) {
+        final TextView txtTitulo = findViewById(R.id.txtTitulo);
+        final TextView txtCategoria = findViewById(R.id.txtCategoria);
+        final TextView txtDescricao = findViewById(R.id.txtDescricao);
+
+        txtTitulo.setText(titulo);
+        txtCategoria.setText(categoria);
+        txtDescricao.setText(descricao);
+
     }
 
     public void atualizarQualidadeAr(){

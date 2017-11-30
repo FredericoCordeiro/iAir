@@ -135,7 +135,7 @@ public class NovoEventoActivity extends AppCompatActivity {
                     @Override
                     public void onResponse(String response) {
                         // Display the first 500 characters of the response string.
-                        Toast.makeText(NovoEventoActivity.this, response.toString(), Toast.LENGTH_SHORT).show();
+                        Toast.makeText(NovoEventoActivity.this, "Publicado com sucesso! Nº registo : "+response, Toast.LENGTH_SHORT).show();
                     }
                 }, new Response.ErrorListener() {
             @Override
