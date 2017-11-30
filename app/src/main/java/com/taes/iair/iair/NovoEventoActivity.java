@@ -51,6 +51,7 @@ public class NovoEventoActivity extends AppCompatActivity {
             Toast.makeText(NovoEventoActivity.this, "Tem de definir um Username no Menu de Opções para poder publicar!", Toast.LENGTH_SHORT).show();
         } else {
             inserirEvento(nome);
+            finish();
         }
 
     }
