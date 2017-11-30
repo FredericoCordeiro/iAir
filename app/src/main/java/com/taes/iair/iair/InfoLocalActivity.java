@@ -280,7 +280,6 @@ public class InfoLocalActivity extends AppCompatActivity {
         Intent it = new Intent(this, NovoEventoActivity.class);
         it.putExtra("nome", nome);
         startActivity(it);
-        finish();
 
     }
 }
