@@ -114,7 +114,7 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
         MenuInflater inflater= getMenuInflater();
         inflater.inflate(R.menu.menu_maps, menu);
 
-        if (local.contains(" District")){
+        if (local != "N/A" && local.contains(" District")){
             String localEditado = local.replace(" District","");
             String favorito = prefs.getString("favorito",null);
             if (favorito.compareTo(localEditado)==0){
@@ -139,6 +139,7 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
 
                 String localEditado = local.replace(" District","");
                 prefs.edit().putString("favorito", localEditado).apply();
+                finish();
             }else{
                 Toast.makeText(this, "Local não identificado!", Toast.LENGTH_SHORT).show();
             }
