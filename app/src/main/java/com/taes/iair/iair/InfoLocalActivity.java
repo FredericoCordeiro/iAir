@@ -275,9 +275,11 @@ public class InfoLocalActivity extends AppCompatActivity {
 
     }
 
+
     public void onClickAddEvento(View view) {
         Intent it = new Intent(this, NovoEventoActivity.class);
         it.putExtra("nome", nome);
         startActivity(it);
+
     }
 }

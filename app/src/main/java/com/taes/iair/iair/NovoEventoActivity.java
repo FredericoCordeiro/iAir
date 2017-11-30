@@ -52,6 +52,8 @@ public class NovoEventoActivity extends AppCompatActivity {
         } else {
             inserirEvento(nome);
             finish();
+            Intent it = new Intent(this, InfoLocalActivity.class);
+            startActivity(it);
         }
 
     }
