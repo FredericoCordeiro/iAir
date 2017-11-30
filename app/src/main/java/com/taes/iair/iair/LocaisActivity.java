@@ -5,6 +5,9 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
@@ -59,92 +62,127 @@ public class LocaisActivity extends AppCompatActivity {
                     adapter.setSelectedIndex(position);
                     adapter.notifyDataSetChanged();
                     prefs.edit().putString("favorito", "Aveiro").apply();
-
+                    setResult(RESULT_OK);
+                    finish();
                     break;
                 case 1:
                     adapter.setSelectedIndex(position);
                     adapter.notifyDataSetChanged();
                     prefs.edit().putString("favorito", "Beja").apply();
+                    setResult(RESULT_OK);
+                    finish();
                     break;
                 case 2:
                     adapter.setSelectedIndex(position);
                     adapter.notifyDataSetChanged();
                     prefs.edit().putString("favorito", "Braga").apply();
+                    setResult(RESULT_OK);
+                    finish();
                     break;
                 case 3:
                     adapter.setSelectedIndex(position);
                     adapter.notifyDataSetChanged();
                     prefs.edit().putString("favorito", "Bragança").apply();
+                    setResult(RESULT_OK);
+                    finish();
                     break;
                 case 4:
                     adapter.setSelectedIndex(position);
                     adapter.notifyDataSetChanged();
                     prefs.edit().putString("favorito", "Castelo Branco").apply();
+                    setResult(RESULT_OK);
+                    finish();
                     break;
                 case 5:
                     adapter.setSelectedIndex(position);
                     adapter.notifyDataSetChanged();
                     prefs.edit().putString("favorito", "Coimbra").apply();
+                    setResult(RESULT_OK);
+                    finish();
                     break;
                 case 6:
                     adapter.setSelectedIndex(position);
                     adapter.notifyDataSetChanged();
                     prefs.edit().putString("favorito", "Évora").apply();
+                    setResult(RESULT_OK);
+                    finish();
                     break;
                 case 7:
                     adapter.setSelectedIndex(position);
                     adapter.notifyDataSetChanged();
                     prefs.edit().putString("favorito", "Faro").apply();
+                    setResult(RESULT_OK);
+                    finish();
                     break;
                 case 8:
                     adapter.setSelectedIndex(position);
                     adapter.notifyDataSetChanged();
                     prefs.edit().putString("favorito", "Guarda").apply();
+                    setResult(RESULT_OK);
+                    finish();
                     break;
                 case 9:
                     adapter.setSelectedIndex(position);
                     adapter.notifyDataSetChanged();
                     prefs.edit().putString("favorito", "Leiria").apply();
+                    setResult(RESULT_OK);
+                    finish();
                     break;
                 case 10:
                     adapter.setSelectedIndex(position);
                     adapter.notifyDataSetChanged();
                     prefs.edit().putString("favorito", "Lisboa").apply();
+                    setResult(RESULT_OK);
+                    finish();
                     break;
                 case 11:
                     adapter.setSelectedIndex(position);
                     adapter.notifyDataSetChanged();
                     prefs.edit().putString("favorito", "Portalegre").apply();
+                    setResult(RESULT_OK);
+                    finish();
                     break;
                 case 12:
                     adapter.setSelectedIndex(position);
                     adapter.notifyDataSetChanged();
                     prefs.edit().putString("favorito", "Porto").apply();
+                    setResult(RESULT_OK);
+                    finish();
                     break;
                 case 13:
                     adapter.setSelectedIndex(position);
                     adapter.notifyDataSetChanged();
                     prefs.edit().putString("favorito", "Santarém").apply();
+                    setResult(RESULT_OK);
+                    finish();
                     break;
                 case 14:
                     adapter.setSelectedIndex(position);
                     adapter.notifyDataSetChanged();
                     prefs.edit().putString("favorito", "Setúbal").apply();
+                    setResult(RESULT_OK);
+                    finish();
                     break;
                 case 15:
                     adapter.setSelectedIndex(position);
                     adapter.notifyDataSetChanged();
                     prefs.edit().putString("favorito", "Viana do Castelo").apply();
+                    setResult(RESULT_OK);
+                    finish();
                     break;
                 case 16:
                     adapter.setSelectedIndex(position);
                     adapter.notifyDataSetChanged();
                     prefs.edit().putString("favorito", "Vila Real").apply();
+                    setResult(RESULT_OK);
+                    finish();
                     break;
                 case 17:
                     adapter.setSelectedIndex(position);
                     adapter.notifyDataSetChanged();
                     prefs.edit().putString("favorito", "Viseu").apply();
+                    setResult(RESULT_OK);
+                    finish();
                     break;
 
             }
@@ -207,10 +245,24 @@ public class LocaisActivity extends AppCompatActivity {
             }
 
         });
+    }
 
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.menu_info_local, menu);
 
+        return true;
+    }
 
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        if (item.getItemId()==R.id.item_rtc){
+            setResult(RESULT_OK);
+            finish();
+        }
 
+        return super.onOptionsItemSelected(item);
     }
 
     private ArrayList<String> todasCidades() {
@@ -238,10 +290,19 @@ public class LocaisActivity extends AppCompatActivity {
         return cidades;
     }
 
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        if (requestCode==2){
+            if (resultCode==RESULT_OK) {
+                Toast.makeText(this, "Bem atualizado!", Toast.LENGTH_SHORT).show();
+            }
+        }
+    }
+
     private void callInfoLocalActivity(String name) {
         Intent it = new Intent(this, InfoLocalActivity.class);
         it.putExtra("nome", name);
-        startActivity(it);
+        startActivityForResult(it, 2 );
     }
 
 

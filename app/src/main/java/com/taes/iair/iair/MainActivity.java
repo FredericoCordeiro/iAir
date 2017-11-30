@@ -199,10 +199,24 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        if (requestCode==1){
+            if (resultCode==RESULT_OK){
+                SharedPreferences prefs = this.getSharedPreferences("favorito", Context.MODE_PRIVATE);
+                favorito = prefs.getString("favorito","Lisboa");
+
+                TextView txtCidade = findViewById(R.id.textCidadeName);
+                txtCidade.setText(favorito);
+                atualizarQualidadeAr();
+            }
+        }
+    }
+
     public void onClickLocais(View view) {
         Intent it = new Intent(this, LocaisActivity.class);
 
-        startActivity(it);
+        startActivityForResult(it, 1);
     }
 
     public void onClickSensores(View view) {
@@ -214,7 +228,7 @@ public class MainActivity extends AppCompatActivity {
     public void onClickMyLoc(View view) {
         Intent it = new Intent(this, MapsActivity.class);
 
-        startActivity(it);
+        startActivityForResult(it,1);
     }
 }
 

@@ -1,5 +1,6 @@
 package com.taes.iair.iair;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -51,7 +52,6 @@ public class NovoEventoActivity extends AppCompatActivity {
             Toast.makeText(NovoEventoActivity.this, "Tem de definir um Username no Menu de Opções para poder publicar!", Toast.LENGTH_SHORT).show();
         } else {
             inserirEvento(nome);
-            finish();
         }
 
     }
@@ -137,6 +137,8 @@ public class NovoEventoActivity extends AppCompatActivity {
                     public void onResponse(String response) {
                         // Display the first 500 characters of the response string.
                         Toast.makeText(NovoEventoActivity.this, "Publicado com sucesso! Nº registo : "+response, Toast.LENGTH_SHORT).show();
+                        setResult(Activity.RESULT_OK);
+                        finish();
                     }
                 }, new Response.ErrorListener() {
             @Override

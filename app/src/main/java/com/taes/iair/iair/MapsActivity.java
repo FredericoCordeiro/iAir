@@ -139,6 +139,7 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
 
                 String localEditado = local.replace(" District","");
                 prefs.edit().putString("favorito", localEditado).apply();
+                setResult(RESULT_OK);
                 finish();
             }else{
                 Toast.makeText(this, "Local não identificado!", Toast.LENGTH_SHORT).show();

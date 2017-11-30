@@ -3,6 +3,9 @@ package com.taes.iair.iair;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -34,6 +37,24 @@ public class InfoLocalActivity extends AppCompatActivity {
 
         atualizarQualidadeAr();
         atualizarEventos();
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.menu_info_local, menu);
+
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        if (item.getItemId()==R.id.item_rtc){
+            setResult(RESULT_OK);
+            finish();
+        }
+
+        return super.onOptionsItemSelected(item);
     }
 
     private void atualizarEventos() {
@@ -275,11 +296,19 @@ public class InfoLocalActivity extends AppCompatActivity {
 
     }
 
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        if (requestCode==3){
+            if (resultCode==RESULT_OK) {
+                atualizarEventos();
+            }
+        }
+    }
 
     public void onClickAddEvento(View view) {
         Intent it = new Intent(this, NovoEventoActivity.class);
         it.putExtra("nome", nome);
-        startActivity(it);
+        startActivityForResult(it, 3);
 
     }
 }
