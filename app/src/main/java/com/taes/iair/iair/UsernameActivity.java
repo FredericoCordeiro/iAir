@@ -30,6 +30,5 @@ public class UsernameActivity extends AppCompatActivity {
         SharedPreferences prefs = this.getSharedPreferences("username", Context.MODE_PRIVATE);
         prefs.edit().putString("username",editText.getText().toString()).apply();
         finish();
-
     }
 }

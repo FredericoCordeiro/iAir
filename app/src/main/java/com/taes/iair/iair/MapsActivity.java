@@ -119,6 +119,8 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
             String favorito = prefs.getString("favorito",null);
             if (favorito.compareTo(localEditado)==0){
                 menu.findItem(R.id.itemLocFav).setIcon(android.R.drawable.star_on);
+            }else{
+                menu.findItem(R.id.itemLocFav).setIcon(android.R.drawable.star_off);
             }
         }
 
