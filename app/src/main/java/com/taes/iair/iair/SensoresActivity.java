@@ -133,6 +133,11 @@ public class SensoresActivity extends AppCompatActivity implements SensorEventLi
             startActivity(it);
         }
 
+        if (item.getItemId()==R.id.item_retroceder){
+            setResult(RESULT_OK);
+            finish();
+        }
+
         return super.onOptionsItemSelected(item);
     }
 
@@ -218,6 +223,7 @@ public class SensoresActivity extends AppCompatActivity implements SensorEventLi
                     public void onResponse(String response) {
                         // Display the first 500 characters of the response string.
                         Toast.makeText(SensoresActivity.this, "Publicado com sucesso! Nº registo : "+response, Toast.LENGTH_SHORT).show();
+                        setResult(RESULT_OK);
                         finish();
                     }
                 }, new Response.ErrorListener() {

@@ -3,7 +3,11 @@
     xmlns:android="http://schemas.android.com/apk/res/android">
 
     <item
+        android:id="@+id/item_retroceder"
+        android:icon="@drawable/ic_action_retroceder"
+        android:title="Retroceder"
+        app:showAsAction="always" />
+    <item
         android:id="@+id/item_username"
-        android:title="Definir Username"
-        android:visible="true" />
+        android:title="Definir Username" />
 </menu>

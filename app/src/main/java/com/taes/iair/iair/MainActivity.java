@@ -222,7 +222,7 @@ public class MainActivity extends AppCompatActivity {
     public void onClickSensores(View view) {
         Intent it = new Intent(this, SensoresActivity.class);
 
-        startActivity(it);
+        startActivityForResult(it, 1);
     }
 
     public void onClickMyLoc(View view) {
