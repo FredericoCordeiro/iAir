@@ -113,9 +113,16 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
     public boolean onCreateOptionsMenu(Menu menu) {
         MenuInflater inflater= getMenuInflater();
         inflater.inflate(R.menu.menu_maps, menu);
+        String localEditado;
 
-        if (local != "N/A" && local.contains(" District")){
-            String localEditado = local.replace(" District","");
+
+
+        if (local != "N/A" ){
+            if(local.contains(" District")){
+                localEditado = local.replace(" District","");
+            }else{
+                localEditado=local;
+            }
             String favorito = prefs.getString("favorito",null);
             if (favorito.compareTo(localEditado)==0){
                 menu.findItem(R.id.itemLocFav).setIcon(android.R.drawable.star_on);
@@ -131,13 +138,17 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
+        String localEditado;
         if (item.getItemId()==R.id.itemLocFav){
 
-            if (local != "N/A" && local.contains(" District")){
+            if (local != "N/A" ){
+                if(local.contains(" District")){
+                    localEditado = local.replace(" District","");
+                }else{
+                    localEditado=local;
+                }
                 item.setChecked(true);
                 item.setIcon(android.R.drawable.star_on);
-
-                String localEditado = local.replace(" District","");
                 prefs.edit().putString("favorito", localEditado).apply();
                 setResult(RESULT_OK);
                 finish();
@@ -314,6 +325,10 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
                 if(cityName==null){
                     local="N/A";
                 }else{
+                    if(cityName.contains("Lisbon"))
+                    {
+                        cityName="Lisboa";
+                    }
                     local=cityName;
                     Toast.makeText(this, local, Toast.LENGTH_SHORT).show();
 

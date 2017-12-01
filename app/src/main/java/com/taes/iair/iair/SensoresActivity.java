@@ -145,9 +145,15 @@ public class SensoresActivity extends AppCompatActivity implements SensorEventLi
         
         
         RequestQueue queue = Volley.newRequestQueue(SensoresActivity.this);
-
+        String localEditado;
         String url=null;
-        String localEditado = local.replace(" District","");
+
+        if(local.contains(" District")){
+             localEditado = local.replace(" District","");
+        }else{
+             localEditado = local;
+        }
+
 
         switch (localEditado){
             case "Aveiro":
@@ -180,7 +186,7 @@ public class SensoresActivity extends AppCompatActivity implements SensorEventLi
             case "Leiria":
                 url="https://api.thingspeak.com/update?api_key=K7XNKM5IS38EYMZQ";
                 break;
-            case "Lisboa":
+            case "Lisboa": //TESTETETESTESTES
                 url="https://api.thingspeak.com/update?api_key=RBJC34V1T0TWCGII";
                 break;
             case "Portalegre":
@@ -329,6 +335,10 @@ public class SensoresActivity extends AppCompatActivity implements SensorEventLi
                 if(cityName==null){
                     txtLocal.setText("N/A");
                 }else{
+                     if(cityName.contains("Lisbon"))
+                     {
+                         cityName = "Lisboa";
+                     }
                     local=cityName;
                     txtLocal.setText(cityName);
                 }
