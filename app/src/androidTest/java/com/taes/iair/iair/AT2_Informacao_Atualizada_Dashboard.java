@@ -23,8 +23,6 @@ import static android.support.test.espresso.matcher.ViewMatchers.isDisplayed;
 import static android.support.test.espresso.matcher.ViewMatchers.withId;
 import static android.support.test.espresso.matcher.ViewMatchers.withText;
 import static org.hamcrest.Matchers.allOf;
-import static org.hamcrest.Matchers.contains;
-import static org.hamcrest.Matchers.not;
 
 @LargeTest
 @RunWith(AndroidJUnit4.class)
@@ -36,16 +34,6 @@ public class AT2_Informacao_Atualizada_Dashboard {
     @Test
     public void aT2_Informacao_Atualizada_Dashboard() {
         ViewInteraction textView = onView(
-                allOf(withId(R.id.textViewHumRel),
-                        childAtPosition(
-                                childAtPosition(
-                                        IsInstanceOf.<View>instanceOf(android.widget.LinearLayout.class),
-                                        2),
-                                1),
-                        isDisplayed()));
-        textView.check(matches(not(withText("N/A"))));
-
-        ViewInteraction textView2 = onView(
                 allOf(withId(R.id.textCidadeName), withText("Lisboa"),
                         childAtPosition(
                                 childAtPosition(
@@ -53,7 +41,7 @@ public class AT2_Informacao_Atualizada_Dashboard {
                                         0),
                                 1),
                         isDisplayed()));
-        textView2.check(matches(withText("Lisboa")));
+        textView.check(matches(withText("Lisboa")));
 
     }
 
