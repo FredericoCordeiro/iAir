@@ -294,7 +294,7 @@ public class LocaisActivity extends AppCompatActivity {
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         if (requestCode==2){
             if (resultCode==RESULT_OK) {
-                Toast.makeText(this, "Bem atualizado!", Toast.LENGTH_SHORT).show();
+
             }
         }
     }
