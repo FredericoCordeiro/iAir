@@ -65,7 +65,7 @@ public class AT12_Alterar_Confirmar_Username {
         appCompatTextView.perform(click());
 
         ViewInteraction appCompatEditText = onView(
-                allOf(withId(R.id.editTextUsername), withText("N/A"),
+                allOf(withId(R.id.editTextUsername),
                         childAtPosition(
                                 childAtPosition(
                                         withClassName(is("android.widget.LinearLayout")),
@@ -75,7 +75,7 @@ public class AT12_Alterar_Confirmar_Username {
         appCompatEditText.perform(replaceText("Fred"));
 
         ViewInteraction appCompatEditText2 = onView(
-                allOf(withId(R.id.editTextUsername), withText("Fred"),
+                allOf(withId(R.id.editTextUsername),
                         childAtPosition(
                                 childAtPosition(
                                         withClassName(is("android.widget.LinearLayout")),
