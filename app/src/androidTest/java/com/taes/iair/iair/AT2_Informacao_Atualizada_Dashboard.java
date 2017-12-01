@@ -43,7 +43,7 @@ public class AT2_Informacao_Atualizada_Dashboard {
                                         2),
                                 1),
                         isDisplayed()));
-        textView.check(matches());
+        textView.check(matches(not(withText("N/A"))));
 
         ViewInteraction textView2 = onView(
                 allOf(withId(R.id.textCidadeName), withText("Lisboa"),
