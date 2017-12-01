@@ -123,7 +123,7 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
             }else{
                 localEditado=local;
             }
-            String favorito = prefs.getString("favorito","");
+            String favorito = prefs.getString("favorito","Lisboa");
             if (favorito.compareTo(localEditado)==0){
                 menu.findItem(R.id.itemLocFav).setIcon(android.R.drawable.star_on);
             }else{
