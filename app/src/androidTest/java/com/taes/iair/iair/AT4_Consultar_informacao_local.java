@@ -3,6 +3,7 @@ package com.taes.iair.iair;
 
 import android.support.test.espresso.DataInteraction;
 import android.support.test.espresso.ViewInteraction;
+import android.support.test.espresso.intent.Intents;
 import android.support.test.rule.ActivityTestRule;
 import android.support.test.runner.AndroidJUnit4;
 import android.test.suitebuilder.annotation.LargeTest;
@@ -21,6 +22,8 @@ import static android.support.test.espresso.Espresso.onData;
 import static android.support.test.espresso.Espresso.onView;
 import static android.support.test.espresso.action.ViewActions.click;
 import static android.support.test.espresso.assertion.ViewAssertions.matches;
+import static android.support.test.espresso.intent.Intents.intended;
+import static android.support.test.espresso.intent.matcher.IntentMatchers.hasComponent;
 import static android.support.test.espresso.matcher.ViewMatchers.isDisplayed;
 import static android.support.test.espresso.matcher.ViewMatchers.withClassName;
 import static android.support.test.espresso.matcher.ViewMatchers.withId;
@@ -38,6 +41,9 @@ public class AT4_Consultar_informacao_local {
 
     @Test
     public void aT4_Consultar_informacao_local() {
+
+        Intents.init();
+
         ViewInteraction appCompatButton = onView(
                 allOf(withId(R.id.button), withText("Mostrar Outros Locais"),
                         childAtPosition(
@@ -66,6 +72,9 @@ public class AT4_Consultar_informacao_local {
                                 0),
                         isDisplayed()));
         textView.check(matches(withText("Coimbra")));
+
+        intended(hasComponent(InfoLocalActivity.class.getName()));
+        Intents.release();
 
     }
 
